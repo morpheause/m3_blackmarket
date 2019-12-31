@@ -28,6 +28,7 @@ Fully customizable blackmarket script for fivem
 - To change add stock command permlevel or command go to server.lua line 165
 
 # Contact
+you can pr for features that can be added or for errors.
 
-Discord: morpheause#7800
-nost roleplay: https://discordapp.com/invite/BbQUCTU
+- Discord: morpheause#7800
+- nost roleplay: https://discordapp.com/invite/BbQUCTU
