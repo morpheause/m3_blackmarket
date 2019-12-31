@@ -7,10 +7,10 @@ Fully customizable blackmarket script for fivem
 
 # Installation
 
-Add to resource folder `[esx]`
-Execute the SQL file: `m3_blackmarket.sql`
-Customize from `config.lua`
-Start using `m3_blackmarket`
+- Add to resource folder `[esx]`
+- Execute the SQL file: `m3_blackmarket.sql`
+- Customize from `config.lua`
+- Start using `m3_blackmarket`
 
 # Features
 
