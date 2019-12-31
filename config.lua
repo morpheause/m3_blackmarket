@@ -1,7 +1,7 @@
 -------------------
 Config = {}
 
-Config.Locale = 'tr'
+Config.Locale = 'en'
 
 -- npc settings --
 Config.NpcModel = 'g_m_y_korean_02' -- npc model - more models: https://wiki.rage.mp/index.php?title=Peds -- default model: g_m_y_korean_02
