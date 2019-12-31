@@ -1,5 +1,5 @@
 # m3_blackmarket
-priv blackmarket script
+private blackmarket script
 
 # Description
 
