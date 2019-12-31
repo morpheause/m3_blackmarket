@@ -21,8 +21,9 @@ Start using `m3_blackmarket`
 - can send logs to a channel via discord webhook
 - easily configure the chance to take delivery and the number of police required
 - police and doctor access can be disabled
+- 2 language option (en, tr)
 
 # Contact
 
 Discord: morpheause#7800
-https://discordapp.com/invite/BbQUCTU
+nost roleplay: https://discordapp.com/invite/BbQUCTU
