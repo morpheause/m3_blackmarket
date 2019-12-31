@@ -5,6 +5,10 @@ private blackmarket script
 
 Fully customizable blackmarket script for fivem
 
+# Dependencies
+- mythic_notify
+- disc-inventoryhud
+
 # Installation
 
 - Add to resource folder `[esx]`
@@ -21,11 +25,15 @@ Fully customizable blackmarket script for fivem
 - can send logs to a channel via discord webhook
 - easily configure the chance to take delivery and the number of police required
 - police and doctor access can be disabled
+- police notification can be easily switched on and off
 - 2 language option (en, tr)
 
 # Notes
 
 - To change add stock command permlevel or command go to server.lua line 165
+- weapons must be changed to item for it to work. If you have manuelly changed, you can delete the disc-inventoryhud section from the dependencies section of the _resource.lua.
+- To change bomb search command go to client.lua line 230
+- If you use kashacters add this code to kashacters IdentifierTables `{table = "m3_blackmarket_orders", column = "identifier"}`
 
 # Contact
 you can pr for features that can be added or for errors.
