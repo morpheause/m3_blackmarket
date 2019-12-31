@@ -23,7 +23,7 @@ Fully customizable blackmarket script for fivem
 - add stock by command option
 - NPC location and model can be easily configure
 - can send logs to a channel via discord webhook
-- easily configure the chance to take delivery and the number of police required
+- easily configure the chance to take delivery or the number of police required or police notify
 - police and doctor access can be disabled
 - police notification can be easily switched on and off
 - 2 language option (en, tr)
