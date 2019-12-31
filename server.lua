@@ -132,7 +132,14 @@ end)
 
 RegisterServerEvent('m3:blackmarket:deliveryConfirmed')
 AddEventHandler('m3:blackmarket:deliveryConfirmed', function(receiverPos)
-	TriggerClientEvent('m3:blackmarket:blipReceiver', source, receiverPos)
+	local xPlayers = ESX.GetPlayers()
+
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == Config.CopJobName then
+			TriggerClientEvent('m3:blackmarket:blipReceiver', xPlayer.source, receiverPos)
+		end
+	end
 end)
 
 
@@ -146,7 +153,7 @@ AddEventHandler('m3:blackmarket:addToBlackmarket', function(name, count, type, p
 			local label = result[1].label
 			MySQL.Async.fetchAll('SELECT * FROM m3_blackmarket_stock WHERE name = @name',{ ['@name'] = name}, function(result2)
 				if result2[1] ~= nil then
-					MySQL.Async.execute('UPDATE m3_blackmarket_stock SET count = @count WHERE name = @name',{['@name'] = name, ['@count'] = result2[1].count + count })
+					MySQL.Async.execute('UPDATE m3_blackmarket_stock SET count = @count AND price = @price WHERE name = @name',{['@name'] = name, ['@price'] = price, ['@count'] = result2[1].count + count })
 					print('[m3_blackmarket] update stock')
 				else
 					MySQL.Async.execute('INSERT INTO m3_blackmarket_stock (type, name, label, count, price) VALUES (@type, @name, @label, @count, @price)',{
