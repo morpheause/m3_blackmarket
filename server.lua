@@ -123,7 +123,6 @@ AddEventHandler('m3:blackmarket:giveItem', function(name, time, lost)
 		if not lost then
 			xPlayer.addInventoryItem(name, 1)
 			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = _U('success_take')})
-			TriggerClientEvent('m3:blackmarket:copNotify', source)
 		else
 			TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = _U('failed_chance_order')})
 		end
@@ -138,6 +137,7 @@ AddEventHandler('m3:blackmarket:deliveryConfirmed', function(receiverPos)
 		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 		if xPlayer.job.name == Config.CopJobName then
 			TriggerClientEvent('m3:blackmarket:blipReceiver', xPlayer.source, receiverPos)
+			TriggerClientEvent('m3:blackmarket:copNotify', xPlayer.source)
 		end
 	end
 end)
