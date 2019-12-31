@@ -41,4 +41,4 @@ Config.UseM3Dispatch = false -- dont touch this
 
 --morphease#7800--
 
---To change add command permlevel or command go to server.lua line 169
+--To change add stock command permlevel or command go to server.lua line 165
