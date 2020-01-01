@@ -32,7 +32,6 @@ Fully customizable blackmarket script for fivem
 
 - To change add stock command permlevel or command go to server.lua line 165
 - weapons must be changed to item for it to work. If you have manuelly changed, you can delete the disc-inventoryhud section from the dependencies section of the _resource.lua.
-- To change bomb search command go to client.lua line 230
 - If you use kashacters add this code to kashacters IdentifierTables `{table = "m3_blackmarket_orders", column = "identifier"}`
 
 # Contact
