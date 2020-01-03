@@ -221,6 +221,7 @@ function OpenOrdersMenu()
 								lost = true
 							end
 							TriggerServerEvent('m3:blackmarket:giveItem', data.current.value, data.current.valuetime, lost)
+							ESX.UI.Menu.CloseAll()
 							PlaySoundFrontend(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0)
 
 							if blipchance <= Config.BlipChange then
