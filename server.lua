@@ -142,8 +142,11 @@ AddEventHandler('m3:blackmarket:giveItem', function(name, time, lost)
 				end
 			end
 		end
+		dclog(name, xPlayer, lost)
 	end
+end)
 
+function dclog(name, xPlayer, lost)
 	local playerName = Sanitize(xPlayer.getName())
 
 	if lost then
@@ -172,7 +175,7 @@ AddEventHandler('m3:blackmarket:giveItem', function(name, time, lost)
 	}
 	data['embeds'][1]['description'] = _U('discorddeliveryitem') .. ': ' .. name .. ' - ' .. _U('discorddelivery') .. ': ' .. itemcondition
 	PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', json.encode(data), headers)
-end)
+end
 
 RegisterServerEvent('m3:blackmarket:deliveryConfirmed')
 AddEventHandler('m3:blackmarket:deliveryConfirmed', function(receiverPos)
