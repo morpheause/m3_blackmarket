@@ -143,6 +143,35 @@ AddEventHandler('m3:blackmarket:giveItem', function(name, time, lost)
 			end
 		end
 	end
+
+	local playerName = Sanitize(xPlayer.getName())
+
+	if lost then
+		itemcondition = _U('discorddeliverytake')
+	else
+		itemcondition = _U('discorddeliverylost')
+	end
+	
+	local discord_webhook = GetConvar('discord_webhook', Config.DiscordWebhook)
+	if discord_webhook == '' then
+	  return
+	end
+	local headers = {
+	  ['Content-Type'] = 'application/json'
+	}
+	local data = {
+	  ["username"] = Config.WebhookName,
+	  ["avatar_url"] = Config.WebhookAvatarUrl,
+	  ["embeds"] = {{
+		["author"] = {
+		  ["name"] = playerName .. ' - ' .. xPlayer.identifier
+		},
+		["color"] = 1942002,
+		["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
+	  }}
+	}
+	data['embeds'][1]['description'] = _U('discorddeliveryitem') .. ': ' .. name .. ' - ' .. _U('discorddelivery') .. ': ' .. itemcondition
+	PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', json.encode(data), headers)
 end)
 
 RegisterServerEvent('m3:blackmarket:deliveryConfirmed')
@@ -227,37 +256,3 @@ function Sanitize(str)
 			return ' '..('&nbsp;'):rep(#s-1)
 		end)
 end
-
-AddEventHandler('m3:blackmarket:giveItem', function(name, time, lost)
-	local _source = source
-	local xPlayer = ESX.GetPlayerFromId(_source)
-	local playerName = Sanitize(xPlayer.getName())
-
-	if lost then
-		itemcondition = _U('discorddeliverytake')
-	else
-		itemcondition = _U('discorddeliverylost')
-	end
-	
-	local discord_webhook = GetConvar('discord_webhook', Config.DiscordWebhook)
-	if discord_webhook == '' then
-	  return
-	end
-	local headers = {
-	  ['Content-Type'] = 'application/json'
-	}
-	local data = {
-	  ["username"] = Config.WebhookName,
-	  ["avatar_url"] = Config.WebhookAvatarUrl,
-	  ["embeds"] = {{
-		["author"] = {
-		  ["name"] = playerName .. ' - ' .. xPlayer.identifier
-		},
-		["color"] = 1942002,
-		["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
-	  }}
-	}
-	data['embeds'][1]['description'] = _U('discorddeliveryitem') .. ': ' .. name .. ' - ' .. _U('discorddelivery') .. ': ' .. itemcondition
-	PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', json.encode(data), headers)
-  end)
-
