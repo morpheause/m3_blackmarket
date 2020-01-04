@@ -196,11 +196,13 @@ AddEventHandler('m3:blackmarket:addToBlackmarket', function(name, count, type, p
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
 	if name ~= nil then
-		MySQL.Async.fetchAll('SELECT * FROM items WHERE name = @name',{ ['@name'] = name}, function(result)
+		MySQL.Async.fetchAll('SELECT label FROM items WHERE name = @name',{ ['@name'] = name}, function(result)
 			local label = result[1].label
 			MySQL.Async.fetchAll('SELECT * FROM m3_blackmarket_stock WHERE name = @name',{ ['@name'] = name}, function(result2)
 				if result2[1] ~= nil then
-					MySQL.Async.execute('UPDATE m3_blackmarket_stock SET count = @count AND price = @price WHERE name = @name',{['@name'] = name, ['@price'] = price, ['@count'] = result2[1].count + count })
+					print(count)
+					MySQL.Async.execute('UPDATE m3_blackmarket_stock SET price = @price WHERE name = @name',{['@name'] = name, ['@price'] = price})
+					MySQL.Async.execute('UPDATE m3_blackmarket_stock SET count = @count  WHERE name = @name',{['@name'] = name, ['@count'] = count })
 					print('[m3_blackmarket] update stock')
 				else
 					MySQL.Async.execute('INSERT INTO m3_blackmarket_stock (type, name, label, count, price) VALUES (@type, @name, @label, @count, @price)',{
